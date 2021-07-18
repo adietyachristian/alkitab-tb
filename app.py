@@ -60,4 +60,4 @@ def hello():
         return render_template('result.html', data = ['Kitab tidak ditemukan',''])
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host = '0.0.0.0', port = 3000)
