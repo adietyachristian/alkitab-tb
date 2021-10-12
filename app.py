@@ -29,7 +29,22 @@ def hello():
         pasal = cari[1]
 
         if len(cari) == 2:
-            cari.append(1)
+            #cari.append(1)
+            for i in os.listdir("Alkitab"):
+                if (i[:len(kitab)].lower() == kitab.lower()):
+                    with open(f"Alkitab/{i}/{i}_{pasal}.txt") as buka_kitab:
+                        book = (f"{i.replace('_',' ')} {pasal}:")
+                        book = book.replace("Raja Raja", "Raja-Raja").replace("Hakim Hakim", "Hakim-Hakim")
+                        ayats = buka_kitab.readlines()
+                        book += f"1-{len(ayats)}"
+                        verse = ""
+                        for j in ayats:
+                            verse += j.replace("\n","")
+                            verse += "\n"
+                        hasil = [book,verse]
+                        return render_template('result.html',data = hasil)
+                            
+                        
         ayat_pertama = int(cari[2])
 
         if len(cari) == 3:
